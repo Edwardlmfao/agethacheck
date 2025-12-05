@@ -14,19 +14,20 @@ client.on('ready', () => {
 });
 
 
-client.on('guildCreate', (guild) => {
+client.on('guildCreate', async (guild) => {
     console.log(`Masuk server baru: ${guild.name} (${guild.id})`);
 
-    const owner = client.users.cache.get(process.env.OWNER_ID);
-    if (owner) {
-        owner.send(`
+    try {
+        const owner = await client.users.fetch(process.env.OWNER_ID);
+        await owner.send(`
 Successfully Entered!
 Server: ${guild.name}
 Server ID: ${guild.id}
 Member: ${guild.memberCount}
-        `).catch(console.error);
+         `);
+    } catch (err) {
+        console.error("Failed:", err);
     }
 });
-
 // Login bot
 client.login(process.env.TOKEN);

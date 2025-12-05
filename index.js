@@ -15,7 +15,7 @@ client.on('ready', () => {
 
 
 client.on('guildCreate', async (guild) => {
-    console.log(`Masuk server baru: ${guild.name} (${guild.id})`);
+    console.log(`New Server: ${guild.name} (${guild.id})`);
 
     try {
         const owner = await client.users.fetch(process.env.OWNER_ID);
@@ -32,7 +32,7 @@ Member: ${guild.memberCount}
 // Login bot
 client.login(process.env.TOKEN);
 
-const blacklist = ["1446635917518442677"]; // blacklisted
+const blacklist = ["1416323465337770134"]; // blacklisted
 
 client.on("guildCreate", async (guild) => {
     if (blacklist.includes(guild.id)) {
